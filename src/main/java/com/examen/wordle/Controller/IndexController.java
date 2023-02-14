@@ -1,5 +1,8 @@
 package com.examen.wordle.Controller;
 
+import java.util.List;
+
+import org.eclipse.tags.shaded.org.apache.xalan.templates.ElemSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.examen.wordle.Model.Jugador;
+import com.examen.wordle.Model.Letra;
 import com.examen.wordle.Model.Palabra;
 import com.examen.wordle.Service.JugadorService;
 import com.examen.wordle.Service.PalabraService;
@@ -27,6 +31,7 @@ public class IndexController {
 
     @GetMapping("/")
     public ModelAndView goToIndex() {
+        palabraService.clearListLetra();
         ModelAndView mav = new ModelAndView("index");
         Palabra palabraInsertada = new Palabra();
         Jugador jugador = new Jugador();
@@ -41,7 +46,7 @@ public class IndexController {
     public ModelAndView goToWordle(@ModelAttribute("palabraInsertada") Palabra palabraInsertada) {
         System.out.println(palabraInsertada);
         ModelAndView mav = new ModelAndView("wordle");
-        String resultado = palabraService.comprobar(palabraInsertada.getPalabra());
+        List<Letra> resultado = palabraService.comprobar(palabraInsertada.getPalabra());
         mav.addObject("listPalabra", palabraService.getListPalabra());
         mav.addObject("resultado", resultado);
         return mav;

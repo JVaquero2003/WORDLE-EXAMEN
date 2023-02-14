@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.examen.wordle.Model.Letra;
 import com.examen.wordle.Repository.PalabraRepository;
 
 @Service
@@ -16,7 +17,7 @@ public class PalabraServiceImpl implements PalabraService {
     public PalabraRepository palabraRepository;
 
     @Override
-    public String comprobar(String palabra) {
+    public List<Letra> comprobar(String palabra) {
         return palabraRepository.comprobar(palabra);
     }
 
@@ -38,5 +39,15 @@ public class PalabraServiceImpl implements PalabraService {
     @Override
     public String getPalabraPorIntento(int intento) {
         return palabraRepository.getPalabraPorIntento(intento);
+    }
+
+    @Override
+    public String getPalabraCorrecta() {
+        return palabraRepository.getPalabraCorrecta();
+    }
+
+    @Override
+    public void clearListLetra() {
+        palabraRepository.clearListLetra();
     }
 }

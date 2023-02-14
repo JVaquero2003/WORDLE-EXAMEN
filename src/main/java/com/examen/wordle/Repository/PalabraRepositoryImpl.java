@@ -5,10 +5,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.examen.wordle.Model.Letra;
+
 @Repository("palabra")
 public class PalabraRepositoryImpl implements PalabraRepository {
 
     List<String> listPalabra = new ArrayList<>();
+
+    List<Letra> listLetra = new ArrayList<>();
 
     int intentos = 5;
 
@@ -19,19 +23,33 @@ public class PalabraRepositoryImpl implements PalabraRepository {
     String palabraCorrecta = "hola";
 
     @Override
-    public String comprobar(String palabra) {
-        if (intentosUsados != intentos) {
+    public List<Letra> comprobar(String palabra) {
+        System.out.println(palabra);
+        if (intentosUsados != intentos && palabra.length() == palabraCorrecta.length()) {
             intentosUsados++;
-            if (palabraCorrecta.equals(palabra)) {
-                listPalabra.add(palabra);
-                return "Has acertado la palabra";
-            } else {
-                listPalabra.add(palabra);
-                return "Has fallado la palabra";
+            for (int x = 0; x < palabra.length(); x++) {
+                if (palabra.charAt(x) == palabraCorrecta.charAt(x)) {
+                    Letra letra = new Letra(palabra.charAt(x), "verde");
+                    System.out.println(letra);
+                    listLetra.add(letra);
+                } else if (palabra.charAt(x) != palabraCorrecta.charAt(x)) {
+                    Letra letra = new Letra(palabra.charAt(x), "rojo");
+                    for (int i = 0; i < palabra.length(); i++) {
+                        if (palabraCorrecta.charAt(i) == letra.getLetra()) {
+                            letra.setColor("amarillo");
+                            System.out.println(letra.toString());
+                        }
+                    }
+                    listLetra.add(letra);
+                }
+
             }
-        } else {
-            return "Has perdido tus intentos";
+            listPalabra.add(palabra);
+        } else if (intentosUsados != intentos) {
+            listPalabra.add(palabra);
+            intentosUsados++;
         }
+        return listLetra;
     }
 
     @Override
@@ -61,6 +79,16 @@ public class PalabraRepositoryImpl implements PalabraRepository {
             }
         }
         return palabra;
+    }
+
+    @Override
+    public String getPalabraCorrecta() {
+        return palabraCorrecta;
+    }
+
+    @Override
+    public void clearListLetra() {
+        listLetra.clear();
     }
 
 }
