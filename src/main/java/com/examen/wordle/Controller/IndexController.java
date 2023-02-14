@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.examen.wordle.Model.Jugador;
@@ -41,7 +42,16 @@ public class IndexController {
         System.out.println(palabraInsertada);
         ModelAndView mav = new ModelAndView("wordle");
         String resultado = palabraService.comprobar(palabraInsertada.getPalabra());
+        mav.addObject("listPalabra", palabraService.getListPalabra());
         mav.addObject("resultado", resultado);
+        return mav;
+    }
+
+    @PostMapping("ranking")
+    public ModelAndView goToRanking(@RequestParam("intento") int intento) {
+        ModelAndView mav = new ModelAndView("wordle");
+        mav.addObject("listPalabra", palabraService.getListPalabra());
+        mav.addObject("listPalabraPorIntento", palabraService.getPalabraPorIntento(intento));
         return mav;
     }
 }

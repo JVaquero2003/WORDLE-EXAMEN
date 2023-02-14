@@ -1,5 +1,7 @@
 package com.examen.wordle.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -26,5 +28,15 @@ public class PalabraServiceImpl implements PalabraService {
     @Override
     public int getIntentosRestantes() {
         return palabraRepository.getIntentosRestantes();
+    }
+
+    @Override
+    public List<String> getListPalabra() {
+        return palabraRepository.getListPalabra();
+    }
+
+    @Override
+    public String getPalabraPorIntento(int intento) {
+        return palabraRepository.getPalabraPorIntento(intento);
     }
 }

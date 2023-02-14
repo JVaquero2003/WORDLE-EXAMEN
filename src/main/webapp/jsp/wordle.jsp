@@ -12,7 +12,24 @@
     <title>Wordle</title>
 </head>
 <body>
-    ${resultado}
+    <h1>Wordle</h1>
+    <form:form action="ranking" method="post">
+        <input type="number" name="intento"/>
+        <button>Enviar</button>
+    </form:form>
+    ${listPalabraPorIntento}
+    <table>
+        <tr>
+            <th>Palabra</th>
+            <th>Intentos</th>
+        </tr>
+        <c:forEach items="${listPalabra}" var="palabra" varStatus="loop">
+            <tr>
+                <td>${palabra}</td>
+                <td>${loop.index + 1}</td>
+            </tr>
+        </c:forEach>
+    <c:out value="${resultado}"></c:out>
     <a href="/">Volver al inicio</a>
 </body>
 </html>

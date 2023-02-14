@@ -1,13 +1,17 @@
 package com.examen.wordle.Model;
 
+import java.util.List;
+
 public class Palabra {
     private String palabra;
+    private List<Letra> letra;
 
     public Palabra() {
     }
 
-    public Palabra(String palabra) {
+    public Palabra(String palabra, List<Letra> letra) {
         this.palabra = palabra;
+        this.letra = letra;
     }
 
     public String getPalabra() {
@@ -18,8 +22,16 @@ public class Palabra {
         this.palabra = palabra;
     }
 
+    public List<Letra> getLetra() {
+        return letra;
+    }
+
+    public void setLetra(List<Letra> letra) {
+        this.letra = letra;
+    }
+
     @Override
     public String toString() {
-        return "Palabra [palabra=" + palabra + "]";
+        return "Palabra [letra=" + letra + ", palabra=" + palabra + "]";
     }
 }
