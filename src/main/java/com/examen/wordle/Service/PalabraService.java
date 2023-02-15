@@ -19,4 +19,6 @@ public interface PalabraService {
     public String getPalabraCorrecta();
 
     public void clearListLetra();
+
+    public void setPalabraCorrecta();
 }

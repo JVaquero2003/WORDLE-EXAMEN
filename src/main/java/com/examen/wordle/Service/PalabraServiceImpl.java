@@ -2,6 +2,7 @@ package com.examen.wordle.Service;
 
 import java.util.List;
 
+import org.eclipse.tags.shaded.org.apache.bcel.generic.ReturnInstruction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -10,11 +11,20 @@ import com.examen.wordle.Model.Letra;
 import com.examen.wordle.Repository.PalabraRepository;
 
 @Service
-public class PalabraServiceImpl implements PalabraService {
+public abstract class PalabraServiceImpl implements PalabraService {
 
     @Autowired
     @Qualifier("palabra")
     public PalabraRepository palabraRepository;
+
+    String PalabraCorrecta;
+
+    int intentos;
+
+    @Override
+    public void setPalabraCorrecta() {
+        palabraRepository.cogerPalabraCorrecta(PalabraCorrecta, intentos);
+    }
 
     @Override
     public List<Letra> comprobar(String palabra) {

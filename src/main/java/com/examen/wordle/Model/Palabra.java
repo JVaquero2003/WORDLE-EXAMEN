@@ -3,6 +3,7 @@ package com.examen.wordle.Model;
 import java.util.List;
 
 public class Palabra {
+
     private String palabra;
 
     public Palabra() {

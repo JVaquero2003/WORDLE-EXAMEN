@@ -1,6 +1,7 @@
 package com.examen.wordle.Model;
 
 public class Jugador {
+
     private String palabraIntroducida;
 
     public Jugador() {

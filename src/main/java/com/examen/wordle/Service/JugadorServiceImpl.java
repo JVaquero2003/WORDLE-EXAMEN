@@ -8,7 +8,7 @@ import com.examen.wordle.Model.Jugador;
 import com.examen.wordle.Repository.JugadorRepository;
 
 @Service
-public class JugadorServiceImpl implements JugadorService {
+public abstract class JugadorServiceImpl implements JugadorService {
 
     @Autowired
     @Qualifier("jugador")

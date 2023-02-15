@@ -19,4 +19,6 @@ public interface PalabraRepository {
     public String getPalabraCorrecta();
 
     public void clearListLetra();
+
+    public void cogerPalabraCorrecta(String palabra, int intentos);
 }

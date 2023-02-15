@@ -21,5 +21,8 @@
     </form:form>
     <c:out value="Llevas ${intentosUsados} intentos usados y te quedan "></c:out>
     <c:out value="${intentosRestantes} intentos restantes"></c:out>
+    <br>
+    <br>
+    <a href="/wordle">Ver la Lista de Intentos</a>
 </body>
 </html>

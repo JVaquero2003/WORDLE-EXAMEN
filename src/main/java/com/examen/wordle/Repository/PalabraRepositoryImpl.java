@@ -14,13 +14,13 @@ public class PalabraRepositoryImpl implements PalabraRepository {
 
     List<Letra> listLetra = new ArrayList<>();
 
-    int intentos = 5;
+    int intentos;
 
     int intentosUsados = 0;
 
     int intentosRestantes = 0;
 
-    String palabraCorrecta = "hola";
+    String palabraCorrecta;
 
     @Override
     public List<Letra> comprobar(String palabra) {
@@ -89,6 +89,12 @@ public class PalabraRepositoryImpl implements PalabraRepository {
     @Override
     public void clearListLetra() {
         listLetra.clear();
+    }
+
+    @Override
+    public void cogerPalabraCorrecta(String palabra, int intentos) {
+        this.palabraCorrecta = palabra;
+        this.intentos = intentos;
     }
 
 }
